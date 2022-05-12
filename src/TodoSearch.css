@@ -1,0 +1,16 @@
+.TodoSearch {
+    background: var(--font-color);
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.TodoSearch input {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    display: block;
+    height: 100%;
+}
