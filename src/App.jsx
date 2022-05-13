@@ -2,7 +2,7 @@ import { TodoCounter } from "./TodoCounter";
 import { TodoSearch } from "./TodoSearch";
 import { TodoList } from "./TodoList";
 import { TodoButton } from "./TodoButton";
-// import './App.css';
+import './App.css';
 
 const todos = [
   { text: 'Cortar cebolla', completed: false },
