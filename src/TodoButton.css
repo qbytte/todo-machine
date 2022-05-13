@@ -17,4 +17,5 @@
     display: block;
     color: var(--font-color);
     font-size: 30px;
+    cursor: pointer;
 }

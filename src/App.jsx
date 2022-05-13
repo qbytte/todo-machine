@@ -5,19 +5,10 @@ import { TodoButton } from "./TodoButton";
 import './App.css';
 
 const todos = [
-  { text: 'Cortar cebolla', completed: false },
+  { text: 'Cortar cebolla', completed: true },
   { text: 'Tomar curso de intro a React', completed: false },
   { text: 'Llorar con la llorona', completed: false },
-  { text: 'Tomar curso de intro a React', completed: false },
-  { text: 'Tomar curso de intro a React', completed: false },
-  { text: 'Tomar curso de intro a React', completed: false },
-  { text: 'Tomar curso de intro a React', completed: false },
-  { text: 'Tomar curso de intro a React', completed: false },
-  { text: 'Tomar curso de intro a React', completed: false },
-  { text: 'Tomar curso de intro a React', completed: false },
-  { text: 'Tomar curso de intro a React', completed: false },
-  { text: 'Tomar curso de intro a React', completed: false },
-  { text: 'Tomar curso de intro a React', completed: false },
+  { text: 'Tomar curso de intro a React', completed: false }
 ];
 
 function App() {

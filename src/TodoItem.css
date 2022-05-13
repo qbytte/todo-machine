@@ -7,3 +7,27 @@
     box-shadow: 0px 7px 33px -7px rgba(0,0,0,0.41);
     border-radius: 5px;
 }
+
+.Icon {
+    cursor: pointer;
+}
+
+.Icon-check:hover {
+    color: greenyellow;
+}
+
+.Icon-check--active {
+    color: greenyellow;
+}
+
+.Icon-delete {
+    font-weight: bold;
+}
+
+.Icon-delete:hover {
+    color: var(--accent-color);
+}
+
+.TodoItem-p--complete {
+    text-decoration: line-through;
+}
