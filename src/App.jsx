@@ -6,8 +6,8 @@ import { TodoButton } from "./TodoButton";
 import "./App.css";
 
 const defTodos = [
-  { text: "Cortar cebolla", completed: true },
-  { text: "Tomar curso de intro a React", completed: true },
+  { text: "Cortar cebolla", completed: false },
+  { text: "Tomar curso de intro a React", completed: false },
   { text: "Llorar con la llorona", completed: false },
 ];
 
@@ -24,11 +24,24 @@ function App() {
   if (!searchValue.length >= 1) {
     searchedTodos = todos;
   } else {
-    searchedTodos = todos.filter(todo => {
+    searchedTodos = todos.filter((todo) => {
       const todoText = todo.text.toLowerCase();
       const searchText = searchValue.toLowerCase();
       return todoText.includes(searchText);
-    })
+    });
+  }
+
+  const completeTodo = (text) => {
+    const todoIndex = todos.findIndex(todo => todo.text == text);
+
+    const newTodos = [...todos];
+    newTodos[todoIndex].completed = true;
+    setTodos(newTodos);
+  };
+
+  const deleteTodo = (text) => {
+    const newTodos = todos.filter(todo => todo.text !== text);
+    setTodos(newTodos);
   }
 
   return (
@@ -37,7 +50,7 @@ function App() {
 
       <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
-      <TodoList todos={searchedTodos} />
+      <TodoList todos={searchedTodos} onComplete={completeTodo} onDelete={deleteTodo} />
 
       <TodoButton />
     </>
