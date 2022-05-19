@@ -3,7 +3,6 @@ import { TodoCounter } from "./TodoCounter";
 import { TodoSearch } from "./TodoSearch";
 import { TodoList } from "./TodoList";
 import { TodoButton } from "./TodoButton";
-import "./App.css";
 
 const defTodos = [
   { text: "Cortar cebolla", completed: false },
