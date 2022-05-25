@@ -10,18 +10,34 @@ import { TodoButton } from "./TodoButton";
 //   { text: "Llorar con la llorona", completed: false },
 // ];
 
-function App() {
-  const localStorageTodos = localStorage.getItem('TODOS_V1');
-  let parsedTodos;
+function useLocalStorage(itemName, initialValue) {
+  const localStorageItem = localStorage.getItem(itemName);
+  let parsedItem;
 
-  if (!localStorageTodos) {
-    localStorage.setItem('TODOS_V1', JSON.stringify([]));
-    parsedTodos = [];
+  if (!localStorageItem) {
+    localStorage.setItem(itemName, JSON.stringify(initialValue));
+    parsedItem = initialValue;
   } else {
-    parsedTodos = JSON.parse(localStorageTodos);
+    parsedItem = JSON.parse(localStorageItem);
   }
 
-  const [todos, setTodos] = React.useState(parsedTodos);
+  const [item, setItem] = React.useState(parsedItem);
+
+  const saveItem = (newItem) => {
+    const stringifiedTodos = JSON.stringify(newItem);
+    localStorage.setItem(itemName, stringifiedTodos);
+    setItem(newItem);
+  };
+
+  return [
+    item,
+    saveItem
+  ]
+}
+
+function App() {
+  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
+
   const [searchValue, setSearchValue] = React.useState("");
 
   const completedTodos = todos.filter((todo) => !!todo.completed).length;
@@ -40,14 +56,8 @@ function App() {
     });
   }
 
-  const saveTodos = (newTodos) => {
-    const stringifiedTodos = JSON.stringify(newTodos);
-    localStorage.setItem('TODOS_V1', stringifiedTodos);
-    setTodos(newTodos);
-  }
-
   const completeTodo = (text) => {
-    const todoIndex = todos.findIndex(todo => todo.text === text);
+    const todoIndex = todos.findIndex((todo) => todo.text === text);
 
     const newTodos = [...todos];
     newTodos[todoIndex].completed = true;
@@ -55,9 +65,9 @@ function App() {
   };
 
   const deleteTodo = (text) => {
-    const newTodos = todos.filter(todo => todo.text !== text);
+    const newTodos = todos.filter((todo) => todo.text !== text);
     saveTodos(newTodos);
-  }
+  };
 
   return (
     <>
@@ -65,7 +75,11 @@ function App() {
 
       <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
-      <TodoList todos={searchedTodos} onComplete={completeTodo} onDelete={deleteTodo} />
+      <TodoList
+        todos={searchedTodos}
+        onComplete={completeTodo}
+        onDelete={deleteTodo}
+      />
 
       <TodoButton />
     </>
