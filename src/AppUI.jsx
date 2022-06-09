@@ -6,28 +6,23 @@ import { TodoList } from "./TodoList";
 import { TodoButton } from "./TodoButton";
 
 const AppUI = () => {
+  const { error, loading, searchedTodos, completeTodo, deleteTodo } =
+    React.useContext(TodoContext);
+
   return (
     <>
       <TodoCounter />
 
       <TodoSearch />
+      {error && <p>Error!</p>}
+      {loading && <p>Cargando...</p>}
+      {!loading && !searchedTodos.length && <p>Crea tu primer TODO!</p>}
 
-      <TodoContext.Consumer>
-        {({ error, loading, searchedTodos, completeTodo, deleteTodo }) => (
-          <>
-            {error && <p>Error!</p>}
-            {loading && <p>Cargando...</p>}
-            {!loading && !searchedTodos.length && <p>Crea tu primer TODO!</p>}
-
-            <TodoList
-              todos={searchedTodos}
-              onComplete={completeTodo}
-              onDelete={deleteTodo}
-            />
-          </>
-        )}
-      </TodoContext.Consumer>
-
+      <TodoList
+        todos={searchedTodos}
+        onComplete={completeTodo}
+        onDelete={deleteTodo}
+      />
       <TodoButton />
     </>
   );
